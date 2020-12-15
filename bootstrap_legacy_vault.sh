@@ -76,13 +76,17 @@ sudo unzip -d /usr/local/bin/ consul_${CONSUL_VERSION}_linux_amd64.zip
 
 ## Move needed files to local directory
 echo "Copying files to local directory"
+mkdir /home/vagrant/scripts
+mkdir /opt/consul 
+mkdir /home/vagrant/log
 cp /vagrant/vault.hcl.consul /home/vagrant/vault.hcl
 cp /vagrant/consul_c1.json /home/vagrant/
-mkdir /home/vagrant/scripts
 cp /vagrant/scripts/* /home/vagrant/scripts
 chown -R vagrant:vagrant /home/vagrant/scripts
+chown -R vagrant:vagrant /home/vagrant/log
 mkdir /opt/consul 
 chown vagrant:vagrant /opt/consul
+
 
 echo "setting env"
 echo "# Setting Vault Variables" >> /home/vagrant/.profile

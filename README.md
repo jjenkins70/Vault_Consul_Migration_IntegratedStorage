@@ -32,6 +32,12 @@ ssh into LegacyVault, cd into scripts and run `start_vault_consul_legacy.sh`. Th
 
 then run `unseal.sh` - this will unseal vault.
 
-
+export your root key to variable TOKEN `export TOKEN=<rootkey>`
 
 ## Let's create some legacy data
+After setting TOKEN=<rootkey> you can run `populate_secrets.sh` which will enable kv secrets and populate ~ 1000 rows of data.
+
+You can verify how many secrets were written by logging in to vault `vault login $TOKEN` and running `vault kv list kv/my-secret |wc -l`
+
+# Checkpoint - We've now built and populated our "legacy" environment.  Let's build out our new Vault clusters that will have integrated storage
+
