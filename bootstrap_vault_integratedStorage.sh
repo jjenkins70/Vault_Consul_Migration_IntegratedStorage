@@ -6,11 +6,6 @@ source /home/vagrant/version.sh
 echo $VAULT_VERSION
 echo $CONSUL_VERSION
 
-sleep 10
-
-#VAULT_VERSION=1.5.5
-#CONSUL_VERSION=1.6.3
-
 #updates and installs
 echo "Updating and Installing unzip, jq"
 sudo apt-get update -y
@@ -69,22 +64,18 @@ LimitNOFILE=65536
 WantedBy=multi-user.target
 EOF
 
-#install Consul
-echo "Downloading and Installing Consul"
-wget https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
-sudo unzip -d /usr/local/bin/ consul_${CONSUL_VERSION}_linux_amd64.zip
-
 ## Move needed files to local directory
 echo "Copying files to local directory"
 mkdir /home/vagrant/scripts
 mkdir /opt/consul 
 mkdir /home/vagrant/log
-cp /vagrant/vault.hcl.consul /home/vagrant/vault.hcl
+mkdir /home/vagrant/vault
+cp /vagrant/vault.hcl.storage /home/vagrant/vault.hcl
 cp /vagrant/consul_c1.json /home/vagrant/
+cp /vagrant/migration.hcl /home/vagrant/
 cp /vagrant/scripts/* /home/vagrant/scripts
 chown -R vagrant:vagrant /home/vagrant/scripts
 chown -R vagrant:vagrant /home/vagrant/log
-chown vagrant:vagrant /opt/consul
 
 
 echo "setting env"

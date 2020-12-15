@@ -1,19 +1,17 @@
 ui = true
 
 listener "tcp" {
-  #address = "10.0.2.15:8200"
   address = "0.0.0.0:8200"
   cluster_address = "0.0.0.0:8201"
-  #cluster_address = "192.168.7.70:8201"
   tls_disable = 1
 }
 
 storage "raft" {
   path = "/home/vagrant/vault"
-  node_id = "node_1"
+  node_id = "vault30"
 }
 
 
 plugin_directory = "/etc/vault/plugins"
-api_addr = "http://192.168.7.70:8201"
-cluster_addr = "https://192.168.7.70:8201"
+api_addr = "http://192.168.10.30:8200"
+cluster_addr = "http://192.168.10.30:8201"
